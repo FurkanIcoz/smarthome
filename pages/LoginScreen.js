@@ -1,62 +1,97 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
-import { auth,signInWithEmailAndPassword } from "../firebase";
-const LoginScreen =()=>{
-
+import {Button, Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { auth, signInWithEmailAndPassword } from "../firebase";
+const LoginScreen = () => {
     const navigation = useNavigation();
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-    const [error,setError] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
-    const handleLogin = async ()=>{
+    const handleLogin = async () => {
         try {
-            await signInWithEmailAndPassword(auth,email,password);
+            await signInWithEmailAndPassword(auth, email, password);
             navigation.navigate('Home');
         } catch (error) {
-            setError(error.message)
+            setError(error.message);
         }
     }
 
-
-    return(
-
+    return (
         <View style={styles.container}>
-            <TextInput
-            placeholder="Email"
-            onChangeText={setEmail}
-            value={email}
-            style={styles.input}/>
-            <TextInput
-            placeholder="Password"
-            secureTextEntry
-            onChangeText={setPassword}
-            value={password}
-            style={styles.input}/>
-            {/* {error ? <Text style={styles.error}>{error}</Text> : null} */}
-            <Button title="Login" onPress={handleLogin}/>
-            <Button title="Register" onPress={()=> navigation.navigate('Register')}/>
 
+            <Text style={{}}>LOGIN PAGE</Text>
+
+            <Image
+                source={require('../assets/iotimage.jpeg')}
+                style={styles.logo}
+            />
+            {/* {error ? <Text style={styles.errorText}>{error}</Text> : null} */}
+            <TextInput  
+                label="Email"
+                value={email}
+                placeholder="Enter Your Email"
+                onChangeText={setEmail}
+                style={styles.input}
+            />
+            <TextInput
+                label="Password"
+                secureTextEntry
+                value={password}
+                placeholder="Enter Your Password"
+                onChangeText={setPassword}
+                style={styles.input}
+            />
+            <Button title="asdasd"></Button>
+            <View style={styles.buttonContainer}>
+                <Button onPress={() => console.log("Hesap Olustur")} title="Hesap Olustur"></Button>
+                <Button onPress={() => console.log("Sifremi Unuttum")} title="Sifremi Unuttum"></Button>
+            </View>
         </View>
-    )
+    );
 }
+
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: 'center',
-      padding: 16,
+        flex: 1,
+        justifyContent: 'flex-start',
+        padding: 20,
+        backgroundColor: '#F8EDED',
+        paddingTop: 80,
+    },
+    logo: {
+        width: 150,
+        height: 150,
+        alignSelf: 'center',
+        marginBottom: 30,
+        borderRadius: 15,
+        borderWidth: 1,
+        borderColor: "#FF6F61",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
     },
     input: {
-      height: 40,
-      borderColor: 'gray',
-      borderWidth: 1,
-      marginBottom: 12,
-      padding: 8,
+        marginBottom: 15,
+        backgroundColor: '#1E1E1E',
     },
-    error: {
-      color: 'red',
-      marginBottom: 12,
+    button: {
+        marginBottom: 15,
+        borderRadius: 25,
+        paddingVertical: 10,
+
     },
-  });
-  
+    buttonContainer: {
+        flexDirection: "row",
+        justifyContent: 'space-between',
+    },
+    errorText: {
+        color: '#FF6F61',
+        textAlign: 'center',
+        marginBottom: 10,
+    }
+});
+
 export default LoginScreen;
