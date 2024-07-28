@@ -10,7 +10,7 @@ const DeviceList = ({ devices, toggleLight }) => {
           <View style={styles.deviceDetails}>
             <Text style={styles.deviceName}>{device.name}</Text>
           </View>
-          {device.type === "temperature" || device.type === "humidity" ? (
+          {device.type === "temperature" || device.type === "humidity" || device.type === "airQuality" ? (
             <Text style={styles.deviceValue}>{device.value}</Text>
           ) : (
             <View style={styles.switchContainer}>

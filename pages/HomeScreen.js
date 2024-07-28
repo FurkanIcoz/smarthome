@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.gray,
-    elevation: 4, // Add shadow effect for elevation
+    elevation: 4,
     backgroundColor: COLORS.white,
   },
   backButton: {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    marginBottom: 60, // Space for the tab bar
+    marginBottom: 60,
   },
   tabBar: {
     flexDirection: 'row',
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     height: 60,
-    elevation: 8, // Add shadow effect for elevation
+    elevation: 8,
   },
   tabButton: {
     flex: 1,
