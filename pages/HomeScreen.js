@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
 import { auth, db, onValue, ref, update } from "../firebase";
 import RoomTabs from "../components/RoomTab";
 import DeviceList from "../components/DeviceList";
 import COLORS from "../Colors";
+import { useNavigation } from "@react-navigation/native";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
   const [rooms, setRooms] = useState([]);
   const [selectedRoomId, setSelectedRoomId] = useState(null);
   const [devices, setDevices] = useState([]);
   const [userName, setUserName] = useState('');
+  const navigation = useNavigation()
 
   useEffect(() => {
     const userId = auth.currentUser.uid;
@@ -32,9 +34,9 @@ const HomeScreen = ({ navigation }) => {
           ...data[key],
         }));
         setRooms(roomsArray);
-        if (roomsArray.length > 0) {
-          setSelectedRoomId(roomsArray[0].id);
-        }
+        if (roomsArray.length > 0 && selectedRoomId==!roomsArray[0].id) {
+            setSelectedRoomId(roomsArray[0].id);
+          }
       } else {
         setRooms([]);
       }
@@ -73,8 +75,8 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Text style={styles.backButtonText}>{"<"}</Text>
+        <TouchableOpacity style={styles.backButton} onPress={() =>navigation.navigate('Login') }>
+          <Text style={styles.backButtonText}>Geri</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>{userName}'s Home</Text>
       </View>
@@ -100,23 +102,26 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
+    backgroundColor: "#fffdff",
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent:"center",
     paddingVertical: 16,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.gray,
     elevation: 4,
-    backgroundColor: COLORS.white,
+    backgroundColor: '#fffdff',
+    paddingHorizontal:20
   },
   backButton: {
-    padding: 10,
-    marginRight: 10,
+    position:'absolute',
+    left:20,
+    zIndex:10
   },
   backButtonText: {
-    fontSize: 24,
+    fontSize: 18,
     color: COLORS.primary,
   },
   headerTitle: {

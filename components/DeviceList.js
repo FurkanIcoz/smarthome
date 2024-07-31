@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
   deviceContainer: {
     marginBottom: 18,
     padding: 16,
-    backgroundColor: COLORS.white,
+    backgroundColor: '#d3f3f5',
     borderRadius: 24,
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
+    borderWidth: 0.4,
     borderColor: COLORS.gray,
   },
   deviceDetails: {

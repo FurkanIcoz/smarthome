@@ -23,16 +23,25 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>GİRİŞ YAPIN</Text>
-      <Image style={styles.image} source={require('../assets/iotimage.jpeg')} />
-      <TextInput
+      <View style={styles.loginTopStyle}>
+        {/* <Text style={styles.title}>GİRİŞ YAPIN</Text> */}
+        <Image style={styles.image} source={require('../assets/smartapsiyon1.jpg')} />
+      </View>
+     <View>
+      <Text style={{marginVertical:5}}>Email</Text>
+     <TextInput
         value={email}
         placeholder='E-Posta Adresinizi Giriniz'
         onChangeText={setEmail}
         style={styles.input}
         placeholderTextColor={COLORS.gray}
       />
-      <TextInput
+     </View>
+      <View>
+        <Text style={{marginVertical:5}}>
+          Şifre
+        </Text>
+        <TextInput
         value={password}
         secureTextEntry={!showPassword}
         placeholder='Şifrenizi Giriniz'
@@ -40,6 +49,8 @@ const LoginScreen = () => {
         style={styles.input}
         placeholderTextColor={COLORS.gray}
       />
+      </View>
+      
       <TouchableOpacity style={styles.showPasswordButton} onPress={() => setShowPassword(!showPassword)}>
         <Text style={styles.showPasswordText}>{showPassword ? 'Gizle' : 'Göster'}</Text>
       </TouchableOpacity>
@@ -54,14 +65,21 @@ const LoginScreen = () => {
           <Text style={styles.linkText}>Kayıt Ol</Text>
         </TouchableOpacity>
       </View>
+      <View style={{width:'100%',alignItems:'center',justifyContent:'center',marginTop:5}}>
+        <Text style={styles.orText}> Veya </Text>
+      </View>
       <View style={styles.socialLoginContainer}>
-        <Text style={styles.orText}>VEYA</Text>
+        {/* <Text style={styles.orText}>VEYA</Text> */}
+
+
         <TouchableOpacity style={styles.socialButton}>
-          <Text style={styles.socialButtonText}>Google ile Giriş Yap</Text>
+          <Image style={{width:30,height:30}} source={require('../assets/googleicon.png')} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.socialButton}>
-          <Text style={styles.socialButtonText}>Facebook ile Giriş Yap</Text>
+          <Image style={{width:30,height:30}} source={require('../assets/facebookicon.png')} />
         </TouchableOpacity>
+
+
       </View>
     </View>
   );
@@ -72,22 +90,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 20,
-    backgroundColor: COLORS.white,
+    backgroundColor: '#fffdff',
+  },
+  loginTopStyle:{
+    width:'100%',
+    borderWidth:0
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     color: COLORS.black,
     textAlign: 'center',
     marginBottom: 20,
   },
   image: {
-    width: 150,
-    height: 150,
     alignSelf: 'center',
     borderRadius: 15,
-    borderWidth: 3,
-    borderColor: COLORS.gray,
+    borderColor: COLORS.black,
     marginBottom: 30,
   },
   input: {
@@ -121,7 +140,7 @@ const styles = StyleSheet.create({
   },
   loginButtonText: {
     color: COLORS.white,
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   buttonContainer: {
@@ -131,24 +150,39 @@ const styles = StyleSheet.create({
   linkText: {
     color: COLORS.primary,
     fontSize: 14,
+    fontWeight:'bold'
   },
   socialLoginContainer: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginVertical: 20,
+    flexDirection:'row',
+    
+  },
+  socialButton: {
+    backgroundColor: '#fffdff',
+    paddingVertical: 10,
+    marginHorizontal:67,
+    borderRadius: 50,
+    alignItems: 'center',
+    marginBottom: 10,
+    flex:2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 3,
+    
+    
   },
   orText: {
     fontSize: 16,
     color: COLORS.gray,
     marginVertical: 10,
   },
-  socialButton: {
-    backgroundColor: COLORS.gray,
-    paddingVertical: 15,
-    borderRadius: 20,
-    alignItems: 'center',
-    marginBottom: 10,
-    width: '100%',
-  },
+ 
   socialButtonText: {
     color: COLORS.white,
     fontSize: 16,
