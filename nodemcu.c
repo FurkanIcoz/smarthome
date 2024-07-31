@@ -46,22 +46,18 @@ void setup() {
     config.database_url = DATABASE_URL;
 
     Firebase.reconnectNetwork(true);
-    fbdo.setBSSLBufferSize(4096 /* Rx buffer size in bytes from 512 - 16384 */, 1024 /* Tx buffer size in bytes from 512 - 16384 */);
+    fbdo.setBSSLBufferSize(4096, 1024 );
     fbdo.setResponseSize(4096);
 
-    // Token Status Callback
     config.token_status_callback = tokenStatusCallback;
 
-    // Firebase'i Başlat
     Firebase.begin(&config, &auth);
 
-    // DHT11 sensörünü başlat
     dht.begin();
 }
 
 void loop() {
     if (Firebase.ready()) {
-        // Sıcaklık ve nem verilerini ölç
         float temperature = dht.readTemperature();
         float humidity = dht.readHumidity();
 
@@ -70,14 +66,11 @@ void loop() {
             return;
         }
 
-        // MQ-135 sensöründen hava kalitesi verisini ölç
         int airQualityValue = analogRead(MQ135PIN);
 
-        // Kullanıcı UID'sine göre yol
         String userId = "kXUMkx3RYAf8unFQDOsnEmgkUon1";
         String userPath = "users/" + userId + "/sensors/";
 
-        // Verileri Firebase'e gönder
         if (Firebase.setFloat(fbdo, userPath + "Temperature", temperature)) {
             Serial.println("Sıcaklık verisi başarıyla gönderildi.");
         } else {
@@ -96,7 +89,6 @@ void loop() {
             Serial.println("HATA: " + fbdo.errorReason());
         }
 
-        // Seri port üzerinden sıcaklık, nem ve hava kalitesi verilerini yazdır
         Serial.print("Sıcaklık: ");
         Serial.print(temperature);
         Serial.println(" °C");
@@ -108,7 +100,6 @@ void loop() {
         Serial.print("Hava Kalitesi: ");
         Serial.println(airQualityValue);
 
-        // Hava kalitesi verisine göre mesaj yazdır ve Firebase'e gönder
         String airQualityMessage;
         if (airQualityValue > 2000) {
             airQualityMessage = "Havalandırma gerekli!";
@@ -124,7 +115,6 @@ void loop() {
             Serial.println("HATA: " + fbdo.errorReason());
         }
 
-        // Verileri tekrar göndermeden önce 10 saniye bekle
         delay(10000);
     }
 }
