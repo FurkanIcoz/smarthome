@@ -89,7 +89,7 @@ const HomeScreen = () => {
           <Text style={styles.tabButtonText}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tabButton} onPress={() => console.log('QR Tab')}>
-          <Text style={styles.tabButtonText}>QR</Text>
+          <Text style={styles.tabButtonText}>Sesli Asistan</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.tabButton} onPress={() => console.log('Profile Tab')}>
           <Text style={styles.tabButtonText}>Profil</Text>
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   tabBar: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     position: 'absolute',
     bottom: 0,
@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  
   tabButtonText: {
     fontSize: 14,
     color: COLORS.white,

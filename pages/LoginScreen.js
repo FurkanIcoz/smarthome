@@ -25,7 +25,9 @@ const LoginScreen = () => {
     <View style={styles.container}>
       <View style={styles.loginTopStyle}>
         {/* <Text style={styles.title}>GİRİŞ YAPIN</Text> */}
-        <Image style={styles.image} source={require('../assets/smartapsiyon1.jpg')} />
+
+        <Image style={styles.imageaps} source={require('../assets/apsiyonimage.jpg')} />
+        <Image style={styles.imagesmartaps} source={require('../assets/smartapsiyon1.jpg')} />
       </View>
      <View>
       <Text style={{marginVertical:5}}>Email</Text>
@@ -103,14 +105,22 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
-  image: {
+  imageaps: {
+    width:'75%',
+    height:70,
+    alignSelf: 'center',
+    borderRadius: 15,
+    borderColor: COLORS.black,
+    marginBottom: 70,
+  },
+  imagesmartaps: {
     alignSelf: 'center',
     borderRadius: 15,
     borderColor: COLORS.black,
     marginBottom: 30,
   },
   input: {
-    height: 50,
+    height: 60,
     borderColor: COLORS.gray,
     borderWidth: 1,
     borderRadius: 10,
@@ -149,12 +159,12 @@ const styles = StyleSheet.create({
   },
   linkText: {
     color: COLORS.primary,
-    fontSize: 14,
+    fontSize: 16,
     fontWeight:'bold'
   },
   socialLoginContainer: {
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: 40,
     flexDirection:'row',
     
   },
